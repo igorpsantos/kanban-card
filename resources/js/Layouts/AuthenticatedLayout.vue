@@ -12,25 +12,18 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
-            <nav class="border-b border-gray-100 bg-white">
+        <div class="min-h-screen bg-gray-200">
+            <nav class="border-b border-primary bg-dark">
                 <!-- Primary Navigation Menu -->
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-12xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 justify-between">
-                        <div class="flex">
+                        <div class="flex items-center">
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')" class="flex items-center space-x-2">
-                                    <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
-                                    <span class="text-lg font-semibold text-gray-800">Kanban Card</span>
+                                    <ApplicationLogo class="block h-9 w-auto fill-current text-primary" />
+                                    <span class="text-lg font-semibold text-primary">Kanban Card</span>
                                 </Link>
-                            </div>
-
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
                             </div>
                         </div>
 
@@ -39,7 +32,10 @@ const showingNavigationDropdown = ref(false);
                             <div class="relative ms-3">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
-                                        <span class="inline-flex rounded-md">
+                                        <span class="inline-flex rounded-md items-center">
+                                            <img :src="$page.props.auth.user.photo_url || 'images/default-avatar.jpg'"
+                                                alt="User Photo" class="h-8 w-8 rounded-full object-cover me-2"
+                                                style="object-fit: cover;" />
                                             <button type="button"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
                                                 {{ $page.props.auth.user.name }}
@@ -106,11 +102,18 @@ const showingNavigationDropdown = ref(false);
                     <!-- Responsive Settings Options -->
                     <div class="border-t border-gray-200 pb-1 pt-4">
                         <div class="px-4">
-                            <div class="text-base font-medium text-gray-800">
-                                {{ $page.props.auth.user.name }}
-                            </div>
-                            <div class="text-sm font-medium text-gray-500">
-                                {{ $page.props.auth.user.email }}
+                            <div class="flex items-center">
+                                <img :src="$page.props.auth.user.photo_url || 'images/default-avatar.jpg'"
+                                    alt="User Photo" class="h-10 w-10 rounded-full object-cover me-3"
+                                    style="object-fit: cover;" />
+                                <div>
+                                    <div class="text-base font-medium text-gray-800">
+                                        {{ $page.props.auth.user.name }}
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-500">
+                                        {{ $page.props.auth.user.email }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -126,17 +129,46 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </nav>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
-                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
-
             <!-- Page Content -->
-            <main>
-                <slot />
-            </main>
+            <div class="min-h-screen flex bg-dark text-white">
+                <!-- Sidebar -->
+                <aside class="w-64 bg-dark-gray border-r border-gray-700">
+                    <div class="h-full p-4">
+                        <h2 class="text-lg font-semibold text-primary mb-4">Menu</h2>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
+                                    class="hover:text-primary">
+                                    Dashboard
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
+                                    class="hover:text-primary">
+                                    Projects
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
+                                    class="hover:text-primary">
+                                    Tasks
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
+                                    class="hover:text-primary">
+                                    Settings
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Conteúdo principal -->
+                <main class="flex-1 p-6 bg-dark overflow-auto">
+                    <slot />
+                </main>
+            </div>
         </div>
     </div>
 </template>
