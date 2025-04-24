@@ -21,8 +21,8 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')" class="flex items-center space-x-2">
-                                    <ApplicationLogo class="block h-9 w-auto fill-current text-primary" />
-                                    <span class="text-lg font-semibold text-primary">Kanban Card</span>
+                                    <!-- <ApplicationLogo class="block h-9 w-auto fill-current text-primary" /> -->
+                                    <span class="text-lg font-semibold text-primary">Teste Logcomex</span>
                                 </Link>
                             </div>
                         </div>
@@ -89,80 +89,10 @@ const showingNavigationDropdown = ref(false);
                 </div>
 
                 <!-- Responsive Navigation Menu -->
-                <div :class="{
-                        block: showingNavigationDropdown,
-                        hidden: !showingNavigationDropdown,
-                    }" class="sm:hidden">
-                    <div class="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </ResponsiveNavLink>
-                    </div>
-
-                    <!-- Responsive Settings Options -->
-                    <div class="border-t border-gray-200 pb-1 pt-4">
-                        <div class="px-4">
-                            <div class="flex items-center">
-                                <img :src="$page.props.auth.user.photo_url || 'images/default-avatar.jpg'"
-                                    alt="User Photo" class="h-10 w-10 rounded-full object-cover me-3"
-                                    style="object-fit: cover;" />
-                                <div>
-                                    <div class="text-base font-medium text-gray-800">
-                                        {{ $page.props.auth.user.name }}
-                                    </div>
-                                    <div class="text-sm font-medium text-gray-500">
-                                        {{ $page.props.auth.user.email }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')">
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
-                    </div>
-                </div>
             </nav>
 
             <!-- Page Content -->
             <div class="min-h-screen flex bg-dark text-white">
-                <!-- Sidebar -->
-                <aside class="w-64 bg-dark-gray border-r border-gray-700">
-                    <div class="h-full p-4">
-                        <h2 class="text-lg font-semibold text-primary mb-4">Menu</h2>
-                        <ul class="space-y-2 text-gray-300">
-                            <li>
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
-                                    class="hover:text-primary">
-                                    Dashboard
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
-                                    class="hover:text-primary">
-                                    Projects
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
-                                    class="hover:text-primary">
-                                    Tasks
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')"
-                                    class="hover:text-primary">
-                                    Settings
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
 
                 <!-- Conteúdo principal -->
                 <main class="flex-1 p-6 bg-dark overflow-auto">
